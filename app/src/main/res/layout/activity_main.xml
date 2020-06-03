@@ -130,7 +130,7 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <Button
-        android:id="@+id/resetBtn"
+        android:id="@+id/reset_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reset"
@@ -142,7 +142,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="player1label,textView2,resetBtn,game_label"
+        app:constraint_referenced_ids="player1label,textView2,reset_btn,game_label"
         tools:layout_editor_absoluteY="715dp" />
+
+    <TextView
+        android:id="@+id/player1_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/zero"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/player2_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/zero"
+        app:layout_constraintStart_toEndOf="@+id/player1label"
+        app:layout_constraintTop_toTopOf="@+id/player1label" />
+
+    <TextView
+        android:id="@+id/game_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/zero"
+        app:layout_constraintStart_toEndOf="@+id/game_label"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

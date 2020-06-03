@@ -3,13 +3,13 @@ package com.learn.tictactoe.data
 import androidx.lifecycle.MutableLiveData
 
 class Player(val playerName: String) {
-    private val point: MutableLiveData<Int> = MutableLiveData()
+    val point: MutableLiveData<Int> = MutableLiveData(0)
 
     fun incrementPoint() {
         point.value = point.value?.inc()
     }
 
     fun reset() {
-        point.value = point.value?.and(0)
+        point.value = 0
     }
 }

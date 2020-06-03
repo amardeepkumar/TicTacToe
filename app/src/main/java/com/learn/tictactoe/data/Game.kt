@@ -6,12 +6,13 @@ class Game(private val player1Name: String = "Player 1",
            private val player2Name: String = "Player 2",
            val player1: Player = Player(player1Name),
            val player2: Player = Player(player2Name),
-           val gameCount: MutableLiveData<Int> = MutableLiveData()
+           val gameCount: MutableLiveData<Int> = MutableLiveData(1),
+           val draw: MutableLiveData<Boolean> = MutableLiveData(false)
 ) {
 
     var player1Turn = true
 
-    private val board = Board()
+    val board = Board()
 
     fun newGame() {
         board.resetBoard()
@@ -28,6 +29,9 @@ class Game(private val player1Name: String = "Player 1",
     fun resetGame() {
         player1.reset()
         player2.reset()
+        board.resetBoard()
+        gameCount.value = 1
+        player1Turn = true
     }
 
     fun incrementGameCount() {

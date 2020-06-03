@@ -4,4 +4,8 @@
     <string name="player1label">Player 1:</string>
     <string name="game_label">Game Number:</string>
     <string name="reset">Reset</string>
+    <string name="zero">0</string>
+    <string name="player_2_wins">Player 2 wins!</string>
+    <string name="player_1_wins">Player 1 wins!</string>
+    <string name="draw">Game draw!</string>
 </resources>
