@@ -14,11 +14,11 @@ class Board(var roundCount: Int = 0,
     }
 
     fun setPlayer1CellType(xIndex: Int, yIndex: Int) {
-        cellArray[xIndex][yIndex].cellType?.value = CellType.X
+        cellArray[xIndex][yIndex].setCellType(CellType.X)
     }
 
     fun setPlayer2CellType(xIndex: Int, yIndex: Int) {
-        cellArray[xIndex][yIndex].cellType?.value = CellType.O
+        cellArray[xIndex][yIndex].setCellType(CellType.O)
     }
 
     fun resetBoard() {
@@ -37,15 +37,15 @@ class Board(var roundCount: Int = 0,
 
     private fun checkDiagonally(): Boolean {
 
-        if (cellArray[0][0].cellType.value  == cellArray[1][1].cellType.value
-            && cellArray[0][0].cellType.value  == cellArray[2][2].cellType.value
-            && cellArray[0][0].cellType.value != CellType.EMPTY) {
+        if (cellArray[0][0].getCellType().value  == cellArray[1][1].getCellType().value
+            && cellArray[0][0].getCellType().value  == cellArray[2][2].getCellType().value
+            && cellArray[0][0].getCellType().value != CellType.EMPTY) {
             return true
         }
 
-        if (cellArray[0][2].cellType.value  == cellArray[1][1].cellType.value
-            && cellArray[0][2].cellType.value  == cellArray[2][0].cellType.value
-            && cellArray[0][2].cellType.value != CellType.EMPTY) {
+        if (cellArray[0][2].getCellType().value  == cellArray[1][1].getCellType().value
+            && cellArray[0][2].getCellType().value  == cellArray[2][0].getCellType().value
+            && cellArray[0][2].getCellType().value != CellType.EMPTY) {
             return true
         }
         return false
@@ -53,9 +53,9 @@ class Board(var roundCount: Int = 0,
 
     private fun checkRows(): Boolean {
         for (row in cellArray) {
-            if (row[0].cellType.value == row[1].cellType.value
-                &&  row[1].cellType.value == row[2].cellType.value
-                && row[1].cellType.value != CellType.EMPTY) {
+            if (row[0].getCellType().value == row[1].getCellType().value
+                &&  row[1].getCellType().value == row[2].getCellType().value
+                && row[1].getCellType().value != CellType.EMPTY) {
                 return true
             }
         }
@@ -64,9 +64,9 @@ class Board(var roundCount: Int = 0,
 
     private fun checkColumns(): Boolean {
         for (i in 0..2) {
-            if (cellArray[0][i].cellType.value  == cellArray[1][i].cellType.value
-                && cellArray[0][i].cellType.value  == cellArray[2][i].cellType.value
-                && cellArray[0][i].cellType.value != CellType.EMPTY) {
+            if (cellArray[0][i].getCellType().value  == cellArray[1][i].getCellType().value
+                && cellArray[0][i].getCellType().value  == cellArray[2][i].getCellType().value
+                && cellArray[0][i].getCellType().value != CellType.EMPTY) {
                 return true
             }
         }

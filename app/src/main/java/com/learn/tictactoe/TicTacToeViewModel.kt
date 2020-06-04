@@ -1,6 +1,5 @@
 package com.learn.tictactoe
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.learn.tictactoe.data.CellType
 import com.learn.tictactoe.data.Game
@@ -27,14 +26,14 @@ class TicTacToeViewModel: ViewModel() {
                 } else {
                     game.player2Wins()
                 }
-                game.board.resetBoard()
                 game.incrementGameCount()
+                game.newGame()
             }
             game.board.roundCount == 9 -> {
                 //draw
-                game.draw.value = true
-                game.board.resetBoard()
+                game.setDraw()
                 game.incrementGameCount()
+                game.newGame()
             }
             else -> {
                 game.player1Turn = game.player1Turn.not()

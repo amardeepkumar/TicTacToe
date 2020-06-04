@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this, R.string.draw, Toast.LENGTH_SHORT).show()
             }
         }
-        ticTacToeViewModel.game.draw.observe(this, drawObserver)
+        ticTacToeViewModel.game.getGameDraw().observe(this, drawObserver)
     }
 
     private fun subscribePlayer2Point() {
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this, R.string.player_2_wins, Toast.LENGTH_SHORT).show()
             }
         }
-        ticTacToeViewModel.game.player2.point.observe(this, player2PointObserver)
+        ticTacToeViewModel.game.player2.getPlayerPoint().observe(this, player2PointObserver)
     }
 
     private fun subscribePlayer1Point() {
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this, R.string.player_1_wins, Toast.LENGTH_SHORT).show()
             }
         }
-        ticTacToeViewModel.game.player1.point.observe(this, player1PointObserver)
+        ticTacToeViewModel.game.player1.getPlayerPoint().observe(this, player1PointObserver)
     }
 
     override fun onClick(v: View?) {
@@ -78,14 +78,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val roundCountObserver: Observer<Int> = Observer {
             game_number.text = it.toString()
         }
-        ticTacToeViewModel.game.gameCount.observe(this, roundCountObserver)
+        ticTacToeViewModel.game.getGameCount().observe(this, roundCountObserver)
     }
 
     private fun subscribeForCell(i: Int, j: Int) {
         val roundCountObserver: Observer<CellType> = Observer {
             buttons[i][j]?.text = it.text
         }
-        ticTacToeViewModel.game.board.cellArray[i][j].cellType.observe(this, roundCountObserver)
+        ticTacToeViewModel.game.board.cellArray[i][j].getCellType().observe(this, roundCountObserver)
     }
 
 }

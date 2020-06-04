@@ -1,13 +1,14 @@
 package com.learn.tictactoe.data
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 class Game(private val player1Name: String = "Player 1",
            private val player2Name: String = "Player 2",
            val player1: Player = Player(player1Name),
            val player2: Player = Player(player2Name),
-           val gameCount: MutableLiveData<Int> = MutableLiveData(1),
-           val draw: MutableLiveData<Boolean> = MutableLiveData(false)
+           private val gameCount: MutableLiveData<Int> = MutableLiveData(1),
+           private val draw: MutableLiveData<Boolean> = MutableLiveData(false)
 ) {
 
     var player1Turn = true
@@ -15,6 +16,8 @@ class Game(private val player1Name: String = "Player 1",
     val board = Board()
 
     fun newGame() {
+        draw.value = false
+        player1Turn = true
         board.resetBoard()
     }
 
@@ -31,11 +34,24 @@ class Game(private val player1Name: String = "Player 1",
         player2.reset()
         board.resetBoard()
         gameCount.value = 1
+        draw.value = false
         player1Turn = true
     }
 
     fun incrementGameCount() {
         gameCount.value = gameCount.value?.inc()
+    }
+
+    fun getGameDraw(): LiveData<Boolean> {
+        return draw
+    }
+
+    fun getGameCount(): LiveData<Int> {
+        return gameCount
+    }
+
+    fun setDraw() {
+        draw.value = true
     }
 }
 
