@@ -26,14 +26,10 @@ class TicTacToeViewModel: ViewModel() {
                 } else {
                     game.player2Wins()
                 }
-                game.incrementGameCount()
-                game.newGame()
             }
             game.board.roundCount == 9 -> {
                 //draw
                 game.setDraw()
-                game.incrementGameCount()
-                game.newGame()
             }
             else -> {
                 game.player1Turn = game.player1Turn.not()
@@ -43,6 +39,11 @@ class TicTacToeViewModel: ViewModel() {
 
     fun resetGame() {
         game.resetGame()
+    }
+
+    fun launchNewGame() {
+        game.incrementGameCount()
+        game.newGame()
     }
 
 }

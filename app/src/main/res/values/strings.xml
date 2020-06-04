@@ -8,4 +8,5 @@
     <string name="player_2_wins">Player 2 wins!</string>
     <string name="player_1_wins">Player 1 wins!</string>
     <string name="draw">Game draw!</string>
+    <string name="ok">Ok</string>
 </resources>

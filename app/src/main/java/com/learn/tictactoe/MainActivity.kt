@@ -3,7 +3,7 @@ package com.learn.tictactoe
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -39,12 +39,35 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         subscribePlayer1Point()
         subscribePlayer2Point()
         subscribeForDraw()
+        subscribeForWinner()
+    }
+
+    private fun subscribeForWinner() {
+        ticTacToeViewModel.game.getWinner().observe(this, Observer{
+            if (it.isNotEmpty()) {
+                showGameResult(it) {
+                    ticTacToeViewModel.launchNewGame()
+                }
+            }
+        })
+    }
+
+    private fun showGameResult(message: String, okClickListener: () -> Unit) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setPositiveButton(getString(R.string.ok)) { _, _ ->
+            okClickListener()
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 
     private fun subscribeForDraw() {
         val drawObserver: Observer<Boolean> = Observer {
             if (it) {
-                Toast.makeText(this, R.string.draw, Toast.LENGTH_SHORT).show()
+                showGameResult(getString(R.string.draw)) {
+                    ticTacToeViewModel.launchNewGame()
+                }
             }
         }
         ticTacToeViewModel.game.getGameDraw().observe(this, drawObserver)
@@ -53,9 +76,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun subscribePlayer2Point() {
         val player2PointObserver: Observer<Int> = Observer {
             player2_points.text = it.toString()
-            if (it > 0) {
-                Toast.makeText(this, R.string.player_2_wins, Toast.LENGTH_SHORT).show()
-            }
         }
         ticTacToeViewModel.game.player2.getPlayerPoint().observe(this, player2PointObserver)
     }
@@ -63,9 +83,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun subscribePlayer1Point() {
         val player1PointObserver: Observer<Int> = Observer {
             player1_point.text = it.toString()
-            if (it > 0) {
-                Toast.makeText(this, R.string.player_1_wins, Toast.LENGTH_SHORT).show()
-            }
         }
         ticTacToeViewModel.game.player1.getPlayerPoint().observe(this, player1PointObserver)
     }

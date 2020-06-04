@@ -8,7 +8,8 @@ class Game(private val player1Name: String = "Player 1",
            val player1: Player = Player(player1Name),
            val player2: Player = Player(player2Name),
            private val gameCount: MutableLiveData<Int> = MutableLiveData(1),
-           private val draw: MutableLiveData<Boolean> = MutableLiveData(false)
+           private val draw: MutableLiveData<Boolean> = MutableLiveData(false),
+           private val winner: MutableLiveData<String> = MutableLiveData()
 ) {
 
     var player1Turn = true
@@ -19,14 +20,17 @@ class Game(private val player1Name: String = "Player 1",
         draw.value = false
         player1Turn = true
         board.resetBoard()
+        winner.value = ""
     }
 
     fun player1Wins() {
         player1.incrementPoint()
+        winner.value = "Player 1 Wins!"
     }
 
     fun player2Wins() {
         player2.incrementPoint()
+        winner.value = "Player 2 Wins!"
     }
 
     fun resetGame() {
@@ -52,6 +56,14 @@ class Game(private val player1Name: String = "Player 1",
 
     fun setDraw() {
         draw.value = true
+    }
+
+    fun getWinner(): LiveData<String> {
+        return winner
+    }
+
+    fun setWinner(player: String) {
+        winner.value = player
     }
 }
 
