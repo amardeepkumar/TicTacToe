@@ -7,7 +7,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.learn.tictactoe.data.CellType
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -42,15 +41,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         subscribeForWinner()
     }
 
-    private fun subscribeForWinner() {
-        ticTacToeViewModel.game.getWinner().observe(this, Observer{
-            if (it.isNotEmpty()) {
-                showGameResult(it) {
-                    ticTacToeViewModel.launchNewGame()
-                }
+    private fun subscribeForWinner() = ticTacToeViewModel.game.getWinner().observe(this, Observer{
+        if (it.isNotEmpty()) {
+            showGameResult(it) {
+                ticTacToeViewModel.launchNewGame()
             }
-        })
-    }
+        }
+    })
 
     private fun showGameResult(message: String, okClickListener: () -> Unit) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -62,47 +59,33 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         dialog.show()
     }
 
-    private fun subscribeForDraw() {
-        val drawObserver: Observer<Boolean> = Observer {
-            if (it) {
-                showGameResult(getString(R.string.draw)) {
-                    ticTacToeViewModel.launchNewGame()
-                }
+    private fun subscribeForDraw() = ticTacToeViewModel.game.getGameDraw().observe(this, Observer {
+        if (it) {
+            showGameResult(getString(R.string.draw)) {
+                ticTacToeViewModel.launchNewGame()
             }
         }
-        ticTacToeViewModel.game.getGameDraw().observe(this, drawObserver)
-    }
+    })
 
-    private fun subscribePlayer2Point() {
-        val player2PointObserver: Observer<Int> = Observer {
-            player2_points.text = it.toString()
-        }
-        ticTacToeViewModel.game.player2.getPlayerPoint().observe(this, player2PointObserver)
-    }
+    private fun subscribePlayer2Point() = ticTacToeViewModel.game.player2.getPlayerPoint()
+        .observe(this, Observer {
+        player2_points.text = it.toString()
+    })
 
-    private fun subscribePlayer1Point() {
-        val player1PointObserver: Observer<Int> = Observer {
-            player1_point.text = it.toString()
-        }
-        ticTacToeViewModel.game.player1.getPlayerPoint().observe(this, player1PointObserver)
-    }
+    private fun subscribePlayer1Point() = ticTacToeViewModel.game.player1.getPlayerPoint()
+        .observe(this, Observer {
+        player1_point.text = it.toString()
+    })
 
-    override fun onClick(v: View?) {
-        ticTacToeViewModel.onCellClick((v as Button).text.toString(), v.getTag(R.id.x_index) as Int, v.getTag(R.id.y_index) as Int)
-    }
+    override fun onClick(v: View?) =  ticTacToeViewModel.onCellClick((v as Button).text.toString(),
+        v.getTag(R.id.x_index) as Int, v.getTag(R.id.y_index) as Int)
 
-    private fun subscribeGameCount() {
-        val roundCountObserver: Observer<Int> = Observer {
-            game_number.text = it.toString()
-        }
-        ticTacToeViewModel.game.getGameCount().observe(this, roundCountObserver)
-    }
+    private fun subscribeGameCount() = ticTacToeViewModel.game.getGameCount().observe(this, Observer {
+        game_number.text = it.toString()
+    })
 
-    private fun subscribeForCell(i: Int, j: Int) {
-        val roundCountObserver: Observer<CellType> = Observer {
-            buttons[i][j]?.text = it.text
-        }
-        ticTacToeViewModel.game.board.cellArray[i][j].getCellType().observe(this, roundCountObserver)
-    }
-
+    private fun subscribeForCell(i: Int, j: Int) = ticTacToeViewModel.game.board.cellArray[i][j].getCellType()
+        .observe(this, Observer {
+        buttons[i][j]?.text = it.text
+    })
 }

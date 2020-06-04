@@ -10,11 +10,7 @@ class Cell(var xIndex: Int, var yIndex: Int, private val cellType: MutableLiveDa
         cellType.value = CellType.EMPTY
     }
 
-    fun getText() = cellType.value?.text
-
-    fun getCellType(): LiveData<CellType> {
-        return cellType
-    }
+    fun getCellType(): LiveData<CellType> = cellType
 
     fun setCellType(newCellType: CellType) {
         cellType.value = newCellType

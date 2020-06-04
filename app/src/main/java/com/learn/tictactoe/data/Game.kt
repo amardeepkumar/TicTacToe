@@ -25,12 +25,12 @@ class Game(private val player1Name: String = "Player 1",
 
     fun player1Wins() {
         player1.incrementPoint()
-        winner.value = "Player 1 Wins!"
+        setWinner("Player 1 Wins!")
     }
 
     fun player2Wins() {
         player2.incrementPoint()
-        winner.value = "Player 2 Wins!"
+        setWinner("Player 2 Wins!")
     }
 
     fun resetGame() {
@@ -46,23 +46,17 @@ class Game(private val player1Name: String = "Player 1",
         gameCount.value = gameCount.value?.inc()
     }
 
-    fun getGameDraw(): LiveData<Boolean> {
-        return draw
-    }
+    fun getGameDraw(): LiveData<Boolean> = draw
 
-    fun getGameCount(): LiveData<Int> {
-        return gameCount
-    }
+    fun getGameCount(): LiveData<Int> = gameCount
 
     fun setDraw() {
         draw.value = true
     }
 
-    fun getWinner(): LiveData<String> {
-        return winner
-    }
+    fun getWinner(): LiveData<String> = winner
 
-    fun setWinner(player: String) {
+    private fun setWinner(player: String) {
         winner.value = player
     }
 }

@@ -6,7 +6,7 @@ import com.learn.tictactoe.data.Game
 
 class TicTacToeViewModel: ViewModel() {
 
-    var game: Game = Game()
+    val game: Game = Game()
 
     fun onCellClick(btnText: String, xIndex: Int, yIndex: Int) {
         if (btnText != CellType.EMPTY.text) {

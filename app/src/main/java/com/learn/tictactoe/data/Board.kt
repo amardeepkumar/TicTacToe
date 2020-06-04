@@ -1,7 +1,5 @@
 package com.learn.tictactoe.data
 
-import androidx.lifecycle.MutableLiveData
-
 class Board(var roundCount: Int = 0,
     val cellArray: Array<Array<Cell>> = Array(3) { row ->
     Array(3) { col ->
@@ -13,13 +11,9 @@ class Board(var roundCount: Int = 0,
         roundCount = roundCount.inc()
     }
 
-    fun setPlayer1CellType(xIndex: Int, yIndex: Int) {
-        cellArray[xIndex][yIndex].setCellType(CellType.X)
-    }
+    fun setPlayer1CellType(xIndex: Int, yIndex: Int) = cellArray[xIndex][yIndex].setCellType(CellType.X)
 
-    fun setPlayer2CellType(xIndex: Int, yIndex: Int) {
-        cellArray[xIndex][yIndex].setCellType(CellType.O)
-    }
+    fun setPlayer2CellType(xIndex: Int, yIndex: Int)  = cellArray[xIndex][yIndex].setCellType(CellType.O)
 
     fun resetBoard() {
         for (row in cellArray) {
