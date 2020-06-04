@@ -14,7 +14,5 @@ class Player(val playerName: String) {
         point.value = 0
     }
 
-    fun getPlayerPoint(): LiveData<Int> {
-        return point
-    }
+    fun getPlayerPoint(): LiveData<Int> = point
 }

@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun showGameResult(message: String, okClickListener: () -> Unit) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setMessage(message)
-        builder.setPositiveButton(getString(R.string.ok)) { _, _ ->
+        builder.setPositiveButton(getString(android.R.string.ok)) { _, _ ->
             okClickListener()
         }
         val dialog: AlertDialog = builder.create()

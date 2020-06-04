@@ -1,9 +1,9 @@
 package com.learn.tictactoe.data
 
 class Board(var roundCount: Int = 0,
-    val cellArray: Array<Array<Cell>> = Array(3) { row ->
-    Array(3) { col ->
-        Cell(row, col)
+    val cellArray: Array<Array<Cell>> = Array(3) {
+    Array(3) {
+        Cell()
     }
 }) {
 
