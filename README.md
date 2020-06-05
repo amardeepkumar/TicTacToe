@@ -15,7 +15,7 @@ It is a multi player game which has Player1 and Player2 as players. It works in 
  
  
 ## Screenshot
-![Screenshot](screenshot.png)
+<img src="https://github.com/amardeepkumar/TicTacToe/blob/master/screenshot.png" width=420 height=780 title="home">
  
 ## Demo
 
