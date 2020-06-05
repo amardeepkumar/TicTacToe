@@ -14,6 +14,9 @@ It is a multi player game which has Player1 and Player2 as players. It works in 
  - Compact function
  
  
+## Screenshot
+![Screenshot](screenshot.png)
+ 
 ## Demo
 
 ![demo](https://raw.githubusercontent.com/amardeepkumar/TicTacToe/master/demo.webp)
