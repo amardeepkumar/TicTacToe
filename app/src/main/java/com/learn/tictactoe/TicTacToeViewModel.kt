@@ -1,12 +1,14 @@
 package com.learn.tictactoe
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.learn.tictactoe.data.CellType
 import com.learn.tictactoe.data.Game
 
-class TicTacToeViewModel: ViewModel() {
+class TicTacToeViewModel(application: Application) : AndroidViewModel(application) {
 
-    val game: Game = Game()
+    val game: Game = Game(application)
 
     fun onCellClick(btnText: String, xIndex: Int, yIndex: Int) {
         if (btnText != CellType.EMPTY.text) {

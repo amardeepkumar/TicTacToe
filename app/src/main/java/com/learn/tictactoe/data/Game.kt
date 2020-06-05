@@ -1,15 +1,16 @@
 package com.learn.tictactoe.data
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.learn.tictactoe.R
 
-class Game(private val player1Name: String = "Player 1",
-           private val player2Name: String = "Player 2",
-           val player1: Player = Player(player1Name),
-           val player2: Player = Player(player2Name),
-           private val gameCount: MutableLiveData<Int> = MutableLiveData(1),
-           private val draw: MutableLiveData<Boolean> = MutableLiveData(false),
-           private val winner: MutableLiveData<String> = MutableLiveData()
+class Game(
+    private val context: Context, val player1: Player = Player(),
+    val player2: Player = Player(),
+    private val gameCount: MutableLiveData<Int> = MutableLiveData(1),
+    private val draw: MutableLiveData<Boolean> = MutableLiveData(false),
+    private val winner: MutableLiveData<String> = MutableLiveData()
 ) {
 
     var player1Turn = true
@@ -25,12 +26,12 @@ class Game(private val player1Name: String = "Player 1",
 
     fun player1Wins() {
         player1.incrementPoint()
-        setWinner("Player 1 Wins!")
+        setWinner(context.getString(R.string.player1_wins))
     }
 
     fun player2Wins() {
         player2.incrementPoint()
-        setWinner("Player 2 Wins!")
+        setWinner(context.getString(R.string.player2_wins))
     }
 
     fun resetGame() {
