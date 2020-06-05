@@ -49,15 +49,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     })
 
-    private fun showGameResult(message: String, okClickListener: () -> Unit) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setMessage(message)
-        builder.setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-            okClickListener()
-        }
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
+    private fun showGameResult(message: String, okClickListener: () -> Unit)
+            = AlertDialog.Builder(this).apply {
+            setMessage(message)
+            setPositiveButton(getString(android.R.string.ok)) { _, _ ->
+                okClickListener()
+            }
+            setCancelable(false)
+        }.create().also { it.show() }
 
     private fun subscribeForDraw() = ticTacToeViewModel.game.getGameDraw().observe(this, Observer {
         if (it) {

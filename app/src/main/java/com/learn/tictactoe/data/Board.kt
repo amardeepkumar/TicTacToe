@@ -24,13 +24,9 @@ class Board(var roundCount: Int = 0,
         roundCount = 0
     }
 
-    fun checkForWin()  =
-        checkRows() ||
-        checkColumns() ||
-        checkDiagonally()
+    fun checkForWin()  = checkRows() || checkColumns() || checkDiagonally()
 
     private fun checkDiagonally(): Boolean {
-
         if (cellArray[0][0].getCellType().value  == cellArray[1][1].getCellType().value
             && cellArray[0][0].getCellType().value  == cellArray[2][2].getCellType().value
             && cellArray[0][0].getCellType().value != CellType.EMPTY) {

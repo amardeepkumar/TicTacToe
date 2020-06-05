@@ -6,10 +6,11 @@ It is a multi player game which has Player1 and Player2 as players. It works in 
 
 ### Kotlin Features
  - Higher order function
- - Default values 
- - Scoping function
+ - Default arguments
+ - Scope function
  - Null safety operator(Safe calls)
- - When operator
+ - When expression
+ - For loop
  - Compact function
  
  

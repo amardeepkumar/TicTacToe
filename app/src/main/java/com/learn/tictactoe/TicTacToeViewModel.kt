@@ -29,7 +29,6 @@ class TicTacToeViewModel(application: Application) : AndroidViewModel(applicatio
                 }
             }
             game.board.roundCount == 9 -> {
-                //draw
                 game.setDraw()
             }
             else -> {
@@ -38,13 +37,10 @@ class TicTacToeViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    fun resetGame() {
-        game.resetGame()
-    }
+    fun resetGame() = game.resetGame()
 
-    fun launchNewGame() {
-        game.incrementGameCount()
-        game.newGame()
+    fun launchNewGame()  = game.let {
+        it.incrementGameCount()
+        it.newGame()
     }
-
 }
